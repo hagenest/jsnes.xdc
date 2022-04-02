@@ -130,3 +130,26 @@ function nes_load_url(canvas_id, path){
 
 document.addEventListener('keydown', (event) => {keyboard(nes.buttonDown, event)});
 document.addEventListener('keyup', (event) => {keyboard(nes.buttonUp, event)});
+
+function saveState(){
+	try{
+		var saveData = JSON.stringify(nes.toJSON());
+		localStorage.setItem(romName, saveData);
+	}catch(oException){
+		if(oException.name == 'QuotaExceededError'){
+			console.log('localStorage out of memory');
+			localStorage.clear();
+			localStorage.setItem(calcMD5(rompath), saveData);
+		}
+	}
+}
+
+function loadState(){
+	var saveData = localStorage.getItem(romName);
+	if( saveData == null ) {
+    	console.log("nothing to load");
+		return;
+}
+	var decodedData = JSON.parse(saveData);
+	nes.fromJSON(decodedData);
+}
