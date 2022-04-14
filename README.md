@@ -1,5 +1,9 @@
 # JSNES as a WebXDC
 
+wip nes emulator as a webxdc for use with deltachat :) You have to provide the rom yourself though
+
+below is the documentation for the webxdc dev tool, for some reason we decided to fork it for this project's base.
+
 -----------------
 
 # Webxdc Development Tool
